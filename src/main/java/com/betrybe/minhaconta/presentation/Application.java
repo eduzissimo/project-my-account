@@ -1,6 +1,7 @@
 package com.betrybe.minhaconta.presentation;
 
 import com.betrybe.minhaconta.business.EnergyAccount;
+import com.betrybe.minhaconta.business.EnergyBill;
 import com.ions.lightdealer.sdk.model.Address;
 import com.ions.lightdealer.sdk.model.Client;
 import com.ions.lightdealer.sdk.model.ElectronicDevice;
@@ -121,17 +122,41 @@ public class Application {
    * Req. 9 – Estimates the address energy bill.
    */
   public void estimateAddressBill() {
+    String clientPropertyRegistration = ui.inputAddressRegistration();
+    Address address = api.findAddress(clientPropertyRegistration);
+
+    if (address == null) {
+      ui.showMessage("Endereço não encontrado!");
+    } else {
+      EnergyBill energyBill = new EnergyBill(address, true);
+      ui.showMessage("Valor estimado para a conta: " + energyBill.estimate());
+    }
   }
 
   /**
    * Req. 10 – Optimizes the energy bill.
    */
   public void optimizeEnergyBill() {
+    String clientCpf = ui.inputClientCpf();
+    Client client = api.findClient(clientCpf);
+
+    if (client == null) {
+      ui.showMessage("Pessoa cliente não encontrada!");
+    } else {
+      EnergyAccount energyAccount = new EnergyAccount(client);
+      suggestReducedUsage(energyAccount);
+    }
   }
 
   /**
    * Req 10 - Aux. Method to display high consumptions devices.
    */
   public void suggestReducedUsage(EnergyAccount energyAccount) {
+    ElectronicDevice[] highConsumptionDevices = energyAccount.findHighConsumptionDevices();
+
+    ui.showMessage("Considere reduzir o uso dos seguintes dispositivos:");
+    for (ElectronicDevice device : highConsumptionDevices) {
+      ui.showMessage(device.getName());
+    }
   }
 }
