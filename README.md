@@ -16,14 +16,6 @@ demanda bem real.
 <details>
   <summary><strong>📝 Habilidades trabalhadas</strong></summary>
 
-- `Lembrar`
-  Lembrar os conceitos e as instruções relacionadas a um programa em Java, bem como as
-  regras e as etapas do sistema de avaliação da Trybe.
-
-- `Compreender`
-  Compreender os requisitos e as funcionalidades de um programa em Java, assim como a
-  lógica por trás dos cálculos que serão realizados.
-
 - `Aplicar`
   Aplicar conhecimentos em programação Java para desenvolver um programa que
   permitirá cadastrar pessoas, imóveis, calcular consumo energético e criar uma fatura.
